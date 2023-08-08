@@ -3198,6 +3198,17 @@ tests:
     test:
     - chain: openshift-e2e-test-qe
     workflow: cucushift-installer-rehearse-vsphere-ipi-ovn-etcd-encryption
+- as: vsphere-8-ipi-ovn-etcd-encryption-p2-f28-destructive
+  cron: 13 21 13,28 * *
+  steps:
+    cluster_profile: vsphere-8
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @network-ovnkubernetes and not @fips
+        and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
+    workflow: cucushift-installer-rehearse-vsphere-ipi-ovn-etcd-encryption
 - as: vsphere-8-upi-p2-f14
   cron: 18 17 15,30 * *
   steps:
@@ -3208,6 +3219,17 @@ tests:
     test:
     - chain: openshift-e2e-test-qe
     workflow: cucushift-installer-rehearse-vsphere-upi
+- as: vsphere-8-upi-p2-f28-destructive
+  cron: 18 17 15,30 * *
+  steps:
+    cluster_profile: vsphere-8
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-upi and @network-ovnkubernetes and not @fips
+        and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
+    workflow: cucushift-installer-rehearse-vsphere-upi
 - as: vsphere-agent-compact-p2-f14
   cron: 35 3 12,27 * *
   steps:
@@ -3217,6 +3239,17 @@ tests:
       TAG_VERSION: '@4.13'
     test:
     - chain: openshift-e2e-test-qe
+    workflow: cucushift-agent-vsphere-install-compact
+- as: vsphere-agent-compact-p2-f28-destructive
+  cron: 35 3 12,27 * *
+  steps:
+    cluster_profile: vsphere
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-upi and @network-ovnkubernetes and not @fips
+        and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-agent-vsphere-install-compact
 - as: vsphere-agent-disconnected-compact-p2-f14
   cron: 18 1 9,24 * *
@@ -3230,6 +3263,17 @@ tests:
     test:
     - chain: openshift-e2e-test-qe
     workflow: cucushift-agent-vsphere-disconnected-install-compact
+- as: vsphere-agent-disc-compact-p2-f28-destructive
+  cron: 18 1 9,24 * *
+  steps:
+    cluster_profile: vsphere-dis
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-upi and @disconnected and @network-ovnkubernetes
+        and not @fips and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
+    workflow: cucushift-agent-vsphere-disconnected-install-compact
 - as: vsphere-agent-disconnected-ha-p2-f14
   cron: 55 16 6,21 * *
   steps:
@@ -3241,6 +3285,17 @@ tests:
       TEST_FILTERS: ~ChkUpgrade&;~NonPreRelease&;~Serial&;~Disruptive&;~ConnectedOnly&;~HyperShiftMGMT&;~MicroShiftOnly&
     test:
     - chain: openshift-e2e-test-qe
+    workflow: cucushift-agent-vsphere-disconnected-install-ha
+- as: vsphere-agent-disconnected-ha-p2-f28-destructive
+  cron: 55 16 6,21 * *
+  steps:
+    cluster_profile: vsphere-dis
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-upi and @disconnected and @network-ovnkubernetes
+        and not @fips and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-agent-vsphere-disconnected-install-ha
 - as: vsphere-agent-disconnected-sno-p2-f14
   cron: 34 7 4,19 * *
@@ -3254,6 +3309,17 @@ tests:
     test:
     - chain: openshift-e2e-test-qe
     workflow: cucushift-agent-vsphere-disconnected-install-sno
+- as: vsphere-agent-disconnected-sno-p2-f28-destructive
+  cron: 34 7 4,19 * *
+  steps:
+    cluster_profile: vsphere-dis
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-upi and @disconnected and @network-ovnkubernetes
+        and @singlenode and not @fips and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
+    workflow: cucushift-agent-vsphere-disconnected-install-sno
 - as: vsphere-agent-ha-p2-f14
   cron: 27 4 4,19 * *
   steps:
@@ -3263,6 +3329,17 @@ tests:
       TAG_VERSION: '@4.13'
     test:
     - chain: openshift-e2e-test-qe
+    workflow: cucushift-agent-vsphere-install-ha
+- as: vsphere-agent-ha-p2-f28-destructive
+  cron: 27 4 4,19 * *
+  steps:
+    cluster_profile: vsphere
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-upi and @network-ovnkubernetes and not @fips
+        and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-agent-vsphere-install-ha
 - as: vsphere-agent-sno-p2-f14
   cron: 34 18 9,24 * *
@@ -3275,6 +3352,17 @@ tests:
     test:
     - chain: openshift-e2e-test-qe
     workflow: cucushift-agent-vsphere-install-sno
+- as: vsphere-agent-sno-p2-f28-destructive
+  cron: 34 18 9,24 * *
+  steps:
+    cluster_profile: vsphere
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-upi and @network-ovnkubernetes and @singlenode
+        and not @fips and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
+    workflow: cucushift-agent-vsphere-install-sno
 - as: vsphere-ipi-compact-p2-f14
   cron: 34 1 4,19 * *
   steps:
@@ -3285,6 +3373,18 @@ tests:
       TAG_VERSION: '@4.13'
     test:
     - chain: openshift-e2e-test-qe
+    workflow: cucushift-installer-rehearse-vsphere-ipi
+- as: vsphere-ipi-compact-p2-f28-destructive
+  cron: 34 1 4,19 * *
+  steps:
+    cluster_profile: vsphere
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @network-ovnkubernetes and not @fips
+        and @destructive'
+      SIZE_VARIANT: compact
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-installer-rehearse-vsphere-ipi
 - as: vsphere-ipi-disconnected-registry-pvc-p2-f14
   cron: 56 3 7,22 * *
@@ -3298,6 +3398,18 @@ tests:
     test:
     - chain: openshift-e2e-test-qe
     workflow: cucushift-installer-rehearse-vsphere-ipi-disconnected-image-registry-pvc
+- as: vsphere-ipi-disc-registry-pvc-p2-f28-destructive
+  cron: 56 3 7,22 * *
+  steps:
+    cluster_profile: vsphere-dis
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @disconnected and @network-ovnkubernetes
+        and not @fips and @destructive'
+      TAG_VERSION: '@4.13'
+      TEST_FILTERS: ~ChkUpgrade&;~NonPreRelease&;~Serial&;~Disruptive&;~ConnectedOnly&;~HyperShiftMGMT&;~MicroShiftOnly&
+    test:
+    - chain: openshift-e2e-test-qe-destructive
+    workflow: cucushift-installer-rehearse-vsphere-ipi-disconnected-image-registry-pvc
 - as: vsphere-ipi-disk-encryption-tang-fips-p2-f14
   cron: 14 20 5,20 * *
   steps:
@@ -3309,6 +3421,17 @@ tests:
     test:
     - chain: openshift-e2e-test-qe
     workflow: cucushift-installer-rehearse-vsphere-ipi-disk-encryption-tang
+- as: vsphere-ipi-disk-encryption-tang-fips-p2-f28-destructive
+  cron: 14 20 5,20 * *
+  steps:
+    cluster_profile: vsphere
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @network-ovnkubernetes and @destructive'
+      FIPS_ENABLED: "true"
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
+    workflow: cucushift-installer-rehearse-vsphere-ipi-disk-encryption-tang
 - as: vsphere-ipi-external-lb-pre-p2-f14
   cron: 56 11 13,28 * *
   steps:
@@ -3319,12 +3442,33 @@ tests:
     test:
     - chain: openshift-e2e-test-qe
     workflow: cucushift-installer-rehearse-vsphere-ipi-external-lb-pre
+- as: vsphere-ipi-external-lb-pre-p2-f28-destructive
+  cron: 56 11 13,28 * *
+  steps:
+    cluster_profile: vsphere
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @network-ovnkubernetes and not @fips
+        and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
+    workflow: cucushift-installer-rehearse-vsphere-ipi-external-lb-pre
 - as: vsphere-ipi-ovn-dualstack-p2-f14
   cron: 24 18 1,16 * *
   steps:
     cluster_profile: vsphere
     env:
       E2E_RUN_TAGS: '@vsphere-ipi and @network-ovnkubernetes and not @fips'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe
+    workflow: cucushift-installer-rehearse-vsphere-ipi-ovn-dualstack
+- as: vsphere-ipi-ovn-dualstack-p2-f28-destructive
+  cron: 24 18 1,16 * *
+  steps:
+    cluster_profile: vsphere
+    env:
+      E2E_RUN_TAGS: '@vsphere-ipi and @network-ovnkubernetes and not @fips and @destructive'
       TAG_VERSION: '@4.13'
     test:
     - chain: openshift-e2e-test-qe
@@ -3338,6 +3482,17 @@ tests:
       TAG_VERSION: '@4.13'
     test:
     - chain: openshift-e2e-test-qe
+    workflow: cucushift-installer-rehearse-vsphere-ipi-ovn-ipsec
+- as: vsphere-ipi-ovn-ipsec-p2-f28-destructive
+  cron: 32 2 14,29 * *
+  steps:
+    cluster_profile: vsphere
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @network-ovnkubernetes and not @fips
+        and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-installer-rehearse-vsphere-ipi-ovn-ipsec
 - as: vsphere-ipi-ovn-local-to-shared-gateway-mode-migration-p2-f14
   cron: 14 3 15,30 * *
@@ -3356,6 +3511,17 @@ tests:
     test:
     - chain: openshift-e2e-test-qe
     workflow: cucushift-installer-rehearse-vsphere-ipi-ovn-shared-to-local-gateway-mode-migration
+- as: vsphere-ipi-ovn-gateway-mode-migration-p2-f28-destructive
+  cron: 56 17 6,21 * *
+  steps:
+    cluster_profile: vsphere
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @network-ovnkubernetes and not @fips
+        and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
+    workflow: cucushift-installer-rehearse-vsphere-ipi-ovn-shared-to-local-gateway-mode-migration
 - as: vsphere-ipi-proxy-fips-p2-f14
   cron: 48 14 1,16 * *
   steps:
@@ -3366,6 +3532,18 @@ tests:
       TAG_VERSION: '@4.13'
     test:
     - chain: openshift-e2e-test-qe
+    workflow: cucushift-installer-rehearse-vsphere-ipi-proxy
+- as: vsphere-ipi-proxy-fips-p2-f28-destructive
+  cron: 48 14 1,16 * *
+  steps:
+    cluster_profile: vsphere-dis
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @proxy and @network-ovnkubernetes
+        and @destructive'
+      FIPS_ENABLED: "true"
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-installer-rehearse-vsphere-ipi-proxy
 - as: vsphere-ipi-proxy-fips-p3-f28-long-duration-cloud
   cron: 29 23 30 * *
@@ -3393,6 +3571,18 @@ tests:
     test:
     - chain: openshift-e2e-test-qe
     workflow: cucushift-installer-rehearse-vsphere-ipi-proxy
+- as: vsphere-ipi-proxy-tp-p2-f28-destructive
+  cron: 15 7 1,16 * *
+  steps:
+    cluster_profile: vsphere-dis
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @proxy and @network-ovnkubernetes
+        and not @fips and @destructive'
+      FEATURE_SET: TechPreviewNoUpgrade
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
+    workflow: cucushift-installer-rehearse-vsphere-ipi-proxy
 - as: vsphere-ipi-proxy-workers-rhel8-p2-f14
   cron: 19 7 5,20 * *
   steps:
@@ -3404,6 +3594,17 @@ tests:
     test:
     - chain: openshift-e2e-test-qe
     workflow: cucushift-installer-rehearse-vsphere-ipi-proxy-workers-rhel8
+- as: vsphere-ipi-proxy-workers-rhel8-p2-f28-destructive
+  cron: 19 7 5,20 * *
+  steps:
+    cluster_profile: vsphere-dis
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @proxy and @network-ovnkubernetes
+        and not @fips and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
+    workflow: cucushift-installer-rehearse-vsphere-ipi-proxy-workers-rhel8
 - as: vsphere-ipi-remote-worker-p2-f14
   cron: 51 7 3,18 * *
   steps:
@@ -3413,6 +3614,17 @@ tests:
       TAG_VERSION: '@4.13'
     test:
     - chain: openshift-e2e-test-qe
+    workflow: cucushift-installer-rehearse-vsphere-ipi-remote-worker
+- as: vsphere-ipi-remote-worker-p2-f28-destructive
+  cron: 51 7 3,18 * *
+  steps:
+    cluster_profile: vsphere-connected
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @network-ovnkubernetes and not @fips
+        and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-installer-rehearse-vsphere-ipi-remote-worker
 - as: vsphere-ipi-sdn-migration-ovn-p2-f14
   cron: 23 5 12,27 * *
@@ -3436,6 +3648,17 @@ tests:
     test:
     - chain: openshift-e2e-test-qe
     workflow: cucushift-installer-rehearse-vsphere-ipi-sdn
+- as: vsphere-ipi-sdn-p2-f28-destructive
+  cron: 34 2 15,30 * *
+  steps:
+    cluster_profile: vsphere
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @network-openshiftsdn and not @fips
+        and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
+    workflow: cucushift-installer-rehearse-vsphere-ipi-sdn
 - as: vsphere-ipi-zones-p2-f14
   cron: 5 17 7,22 * *
   steps:
@@ -3445,6 +3668,17 @@ tests:
       TAG_VERSION: '@4.13'
     test:
     - chain: openshift-e2e-test-qe
+    workflow: cucushift-installer-rehearse-vsphere-ipi-zones
+- as: vsphere-ipi-zones-p2-f28-destructive
+  cron: 5 17 7,22 * *
+  steps:
+    cluster_profile: vsphere-multizone
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @network-ovnkubernetes and not @fips
+        and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-installer-rehearse-vsphere-ipi-zones
 - as: vsphere-upi-disconnected-sdn-workers-rhcos-rhel8-p2-f14
   cron: 17 20 11,26 * *
@@ -3458,6 +3692,17 @@ tests:
     test:
     - chain: openshift-e2e-test-qe
     workflow: cucushift-installer-rehearse-vsphere-upi-disconnected-sdn-workers-rhcos-rhel8
+- as: vsphere-upi-disc-sdn-rhcos-rhel8-p2-f28-destructive
+  cron: 17 20 11,26 * *
+  steps:
+    cluster_profile: vsphere-dis
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-upi and @disconnected and @network-openshiftsdn
+        and not @fips and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
+    workflow: cucushift-installer-rehearse-vsphere-upi-disconnected-sdn-workers-rhcos-rhel8
 - as: vsphere-upi-disconnected-secureboot-fips-p2-f14
   cron: 34 6 4,19 * *
   steps:
@@ -3469,6 +3714,18 @@ tests:
       TEST_FILTERS: ~ChkUpgrade&;~NonPreRelease&;~Serial&;~Disruptive&;~ConnectedOnly&;~HyperShiftMGMT&;~MicroShiftOnly&
     test:
     - chain: openshift-e2e-test-qe
+    workflow: cucushift-installer-rehearse-vsphere-upi-disconnected-secureboot
+- as: vsphere-upi-dis-secureboot-fips-p2-f28-destructive
+  cron: 34 6 4,19 * *
+  steps:
+    cluster_profile: vsphere-dis
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-upi and @disconnected and @network-ovnkubernetes
+        and @destructive'
+      FIPS_ENABLED: "true"
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-installer-rehearse-vsphere-upi-disconnected-secureboot
 - as: vsphere-upi-disconnecting-network-p2-f28
   cron: 52 0 12 * *
@@ -3482,6 +3739,17 @@ tests:
     test:
     - chain: openshift-e2e-test-qe
     workflow: cucushift-installer-rehearse-vsphere-upi-disconnecting-network
+- as: vsphere-upi-disc-network-p2-f28-destructive
+  cron: 52 0 12 * *
+  steps:
+    cluster_profile: vsphere-connected
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-upi and @disconnected and @network-openshiftsdn
+        and not @fips and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
+    workflow: cucushift-installer-rehearse-vsphere-upi-disconnecting-network
 - as: vsphere-upi-encrypt-p2-f14
   cron: 49 11 15,30 * *
   steps:
@@ -3491,6 +3759,17 @@ tests:
       TAG_VERSION: '@4.13'
     test:
     - chain: openshift-e2e-test-qe
+    workflow: cucushift-installer-rehearse-vsphere-upi-encrypt
+- as: vsphere-upi-encrypt-p2-f28-destructive
+  cron: 49 11 15,30 * *
+  steps:
+    cluster_profile: vsphere
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-upi and @network-ovnkubernetes and not @fips
+        and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-installer-rehearse-vsphere-upi-encrypt
 - as: vsphere-upi-platform-external-p2-f14
   cron: 26 17 12,27 * *
@@ -3503,6 +3782,17 @@ tests:
     test:
     - chain: openshift-e2e-test-qe
     workflow: cucushift-installer-rehearse-vsphere-upi-platform-external
+- as: vsphere-upi-platform-external-p2-f28-destructive
+  cron: 26 17 12,27 * *
+  steps:
+    cluster_profile: vsphere
+    env:
+      E2E_RUN_TAGS: '@amd64 and @baremetal-upi and @network-ovnkubernetes and not
+        @fips and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
+    workflow: cucushift-installer-rehearse-vsphere-upi-platform-external
 - as: vsphere-upi-zones-p2-f14
   cron: 34 8 1,16 * *
   steps:
@@ -3512,6 +3802,17 @@ tests:
       TAG_VERSION: '@4.13'
     test:
     - chain: openshift-e2e-test-qe
+    workflow: cucushift-installer-rehearse-vsphere-upi-zones
+- as: vsphere-upi-zones-p2-f28-destructive
+  cron: 34 8 1,16 * *
+  steps:
+    cluster_profile: vsphere-multizone
+    env:
+      E2E_RUN_TAGS: '@amd64 and @vsphere-upi and @network-ovnkubernetes and not @fips
+        and @destructive'
+      TAG_VERSION: '@4.13'
+    test:
+    - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-installer-rehearse-vsphere-upi-zones
 zz_generated_metadata:
   branch: release-4.13
