@@ -53,8 +53,6 @@ if ! which kubectl; then
     ln -s "$(which oc)" ${HOME}/kubectl
 fi
 
-which extended-platform-tests
-
 # setup proxy
 if test -f "${SHARED_DIR}/proxy-conf.sh"
 then
