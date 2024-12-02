@@ -809,6 +809,15 @@ tests:
     test:
     - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-installer-rehearse-azure-ipi-sno-etcd-encryption
+- as: azure-ipi-sno-etcd-encryption-amd-f60-longduration-cloud
+  cron: 37 1 7 2,4,6,8,10,12 *
+  steps:
+    cluster_profile: azure-qe
+    env:
+      BASE_DOMAIN: qe.azure.devcluster.openshift.com
+    test:
+    - chain: openshift-e2e-test-clusterinfra-qe-longrun
+    workflow: cucushift-installer-rehearse-azure-ipi-sno-etcd-encryption
 - as: azure-ipi-private-spec-net-type-spec-perm-amd-f28-destructive
   cron: 13 21 15 * *
   steps:
@@ -1161,6 +1170,13 @@ tests:
     cluster_profile: gcp-qe
     test:
     - chain: openshift-e2e-test-qe-destructive
+    workflow: cucushift-installer-rehearse-gcp-ipi-sno-etcd-encryption
+- as: gcp-ipi-sno-etcd-encryption-amd-f60-longduration-cloud
+  cron: 53 5 24 2,4,6,8,10,12 *
+  steps:
+    cluster_profile: gcp-qe
+    test:
+    - chain: openshift-e2e-test-clusterinfra-qe-longrun
     workflow: cucushift-installer-rehearse-gcp-ipi-sno-etcd-encryption
 - as: gcp-ipi-sno-etcd-encryption-arm-f28
   cron: 35 4 25 * *
