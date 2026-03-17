@@ -74,12 +74,12 @@ tests:
     cluster_profile: aws-2
     workflow: openshift-e2e-aws
 - always_run: false
-  as: e2e-aws-ovn-serial
+  as: e2e-aws-ovn-techpreview-serial
   pipeline_skip_if_only_changed: \.md$|(^|/)docs/|(^|/)LICENSE$|(^|/)manifests-gen/|(^|/)OWNERS$
   shard_count: 2
   steps:
     cluster_profile: aws-5
-    workflow: openshift-e2e-aws-serial
+    workflow: openshift-e2e-aws-techpreview-serial
 - always_run: false
   as: e2e-aws-ovn-techpreview
   pipeline_skip_if_only_changed: \.md$|(^|/)docs/|(^|/)LICENSE$|(^|/)manifests-gen/|(^|/)OWNERS$
